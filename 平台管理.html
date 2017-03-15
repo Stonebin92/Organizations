@@ -1,0 +1,864 @@
+<div class="page-wrapperbox" id="{{.GUID}}">
+
+
+	<div class="leftbar">
+		<a data-bind="css:{'current':AttrView()==0}" ui-main="0" style="font-size:14px;position:relative;display: block;cursor:pointer;height:28px;line-height:28px;padding:0 8px;margin:5px 0;">付款方式</a>
+		<a data-bind="css:{'current':AttrView()==1}" ui-main="1" style="font-size:14px;position:relative;display: block;cursor:pointer;height:28px;line-height:28px;padding:0 8px;margin:5px 0;">订单状态</a>
+		<a data-bind="css:{'current':AttrView()==2}" ui-main="2" style="font-size:14px;position:relative;display: block;cursor:pointer;height:28px;line-height:28px;padding:0 8px;margin:5px 0;">请假类型</a>
+		<a data-bind="css:{'current':AttrView()==3}" ui-main="3" style="font-size:14px;position:relative;display: block;cursor:pointer;height:28px;line-height:28px;padding:0 8px;margin:5px 0;">加班类型</a>
+		<a data-bind="css:{'current':AttrView()==4}" ui-main="4" style="font-size:14px;position:relative;display: block;cursor:pointer;height:28px;line-height:28px;padding:0 8px;margin:5px 0;">出差类型</a>
+		<!-- <a data-bind="css:{'current':AttrView()==5}" ui-main="5" style="font-size:14px;position:relative;display: block;cursor:pointer;height:28px;line-height:28px;padding:0 8px;margin:5px 0;">签卡类型</a> -->
+		<a data-bind="css:{'current':AttrView()==6}" ui-main="6" style="font-size:14px;position:relative;display: block;cursor:pointer;height:28px;line-height:28px;padding:0 8px;margin:5px 0;">节假日</a>
+	</div>
+	
+	<div class="rightbox">
+		<div style="display:none" data-bind="visible:AttrView()!=6">
+			<div class="bigdata-navtitle" data-bind="text:AttrViewTitle()">付款方式vds</div>
+			<h3 class="mb10" style="font-weight:normal;">待审核申请</h3>
+			<div class="bigdata-graybox clearfix">
+				<div data-bind="foreach:ListValueWaitForApprove">
+					<div class="s-brand-box left">
+						<span class="s-icon-wait left" ui-showapprovetypeorno="true" style="padding: 0 5px;display:none" data-bind="visible:$data.ApproveStatus==0&&$data.indexid!='',click:function(m,e){$root.EventIsShowApp(m,e,$index)},attr:{'title':'审核'}"></span>
+						<div class="brand-item brand-itemapprove s-brand">
+							
+							<!-- <button class="right ic-reddel" title="驳回" data-bind="click:$root.EventShowReject"></button>
+							<button class="right ic-agree" title="同意" data-bind="click:$root.EventApprove"></button>
+							<div class="company right" style="color:#a0a0a0" data-bind="text:$data.CompanyName,attr:{'title':'所属企业：'+$data.CompanyName}"></div> -->
+							<div ui-approvetype="true"></div>
+							<div class="overflow-h">
+								<span class="txt s-audit-title" data-bind="text:$data.Name">爱慕</span>
+							</div>
+						</div>
+						
+						<div class="company"  data-bind="visible:$data.CompanyName!='',text:'来自'+$data.CompanyName,attr:{title:'所属企业：'+$data.CompanyName}" style="color:#a0a0a0;display:none">企业</div>
+					</div>
+				</div>
+			</div>
+			<h3 class="mb10" style="font-weight:normal;">内置数据</h3>
+			<div class="bigdata-content" style="margin-bottom:45px;">
+				<div class="plrt10 clearfix v4-base-listbox dashed v4-red-f3-"> 
+					<div data-bind="foreach:ListValueData">
+						<!-- <span class="item left">
+							<a class="close" title="删除" data-bind="click:$root.EventDel,clickBubble:false"></a>   
+							<span data-bind="text:$data.Name">飞</span>
+						</span> -->
+						<div data-bind="" class="relative left">
+							<span  class="item left"  ui-spaninsetname="true"  data-bind="css:{'s-icon-gray':$data.UI_EnableStatus()==1,'s-item-blue':$data.UI_EnableStatus()!=1},click:function(m,e){$root.EventIsShowInSetData(m,e,$index)},text:$data.UI_Name()">ipoiwepori</span>
+							<input data-bind="textInput:$data.Name,event:{change:function(m,e){$root.EventUpdateInSetData(m,e)}}" class="s-edit-input left s-icon-gray" ui-inputinsetname="true"  type="text" value="" style="cursor: initial;display:none"/>
+							<div ui-insetname="true" style="position: absolute;left:0px;top: 3px;right:0;min-width:120px;z-index: 1"></div> 
+						</div>
+					</div>
+					<input data-bind="textInput:$root.AttrValue,event:{keyup:$root.EventSave}" type="text" class="left fs12 mb10" placeholder="输入属性值名称，按Enter新增" style="width:200px;margin-top:6px;">
+				</div>
+			</div>
+			
+			<h3 class="mb10" style="font-weight:normal;">审核通过数据</h3>
+			<div class="bigdata-graybox clearfix">
+				<div data-bind="foreach:ListValueHasPassApprove">
+					<div class="s-brand-box left">
+						<span class="left" style="display:none" data-bind="visible:$data.UI_EnableStatus()!=0&&$data.ApproveStatus==1,click:$root.EvenEnableOrNo,clickBubble:false,css:{'s-icon-start':$data.UI_EnableStatus()!=1,'s-icon-ban':$data.UI_EnableStatus()==1},attr:{'title':$data.UI_EnableStatus()==1?'禁用':'启用'}"></span>
+						<div class="brand-item s-brand">
+							<!-- <button style="display: inline-block;" class="right ic-delbtn" title="删除" data-bind="click:$root.EventDelHasPassApprove,clickBubble:false"></button> -->
+							<!-- <div class="company right" style="color:#a0a0a0" data-bind="text:$data.CompanyName,attr:{'title':'所属企业：'+$data.CompanyName}"></div> -->
+							<div class="overflow-h">
+								<input type="text" data-bind="textInput:$data.Name,event:{change:function(m,e){$root.EventUpdateHasPassApprove(m,e)}}" style="display:block;"/>
+							</div>
+						</div>
+						<div class="company"  data-bind="visible:$data.CompanyName!='',text:'来自'+$data.CompanyName,attr:{title:'所属企业：'+$data.CompanyName}" style="color:#a0a0a0;display:none">企业</div>
+					</div>
+				</div>
+			</div>
+					
+		</div>
+		
+		<!-- 节假日 -->
+		<div data-bind="visible:AttrView()==6">
+			<div class="bigdata-navtitle" data-bind="text:AttrViewTitle()">节假日</div>
+			<h3 class="mb10" style="font-weight:normal;">内置数据</h>
+			<div class="bigdata-content">
+				<div class="plrt10 clearfix v4-base-listbox dashed v4-red-f3-"> 
+					<div data-bind="foreach:ListHoliday">
+						<!-- <span class="item left">
+							<a class="close" title="删除" data-bind="click:$root.EventDel,clickBubble:false"></a>   
+							<span data-bind="text:$data.Name+'-'+$data.OffDate">飞</span>
+						</span> -->
+						<div data-bind="" class="relative left">
+							<span  class="item left"  ui-spaninsetname="true"  data-bind="css:{'s-icon-gray':$data.UI_EnableStatus()==1,'s-item-blue':$data.UI_EnableStatus()!=1},click:function(m,e){$root.EventIsShowInSetData(m,e,$index)},text:$data.UI_Name()+'-'+$data.UI_OffDate()">ipoiwepori</span>
+							<div ui-insetname="true" style="position: absolute;left:0px;top: 3px;right:0;min-width:120px;z-index: 1"></div> 
+						</div>
+					</div>
+					<a class="bigdata-addbluebtn left mt5 mb10" data-bind="click:$root.EventAddHoliday">新增节假日</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- (驳回)弹出层 -->
+	<div data-bind="attr:{id:CtrlRejectID}" ui-pop-bg="true" style="position: fixed;background-color: rgba(0,0,0,0.5);top: 0;bottom: 0;left: 0;right: 0;z-index: 99;display:none;">
+		<div ui-pop="true" style="background-color: #ffffff;border-radius: 5px;position: fixed;top: 50%;left: 50%;width:495px;height: 320px;margin-top: -160px;margin-left: -247px;">
+			<div style="height:48px;border-bottom: 1px solid #dcdcdc;line-height: 48px;padding: 0 15px;border-top-left-radius: 5px;border-top-right-radius: 5px;">
+				<a data-bind="click:EventCloseReject" style="width: 24px;height: 24px;float: right;cursor: pointer;margin-top: 12px;background: url({{.StaticServer}}/T1yun/cssAndjs/v2.3/images/popclose.png) 0 0px no-repeat;" title="关闭"></a>
+				<span style="font-size: 16px;">驳回申请</span>
+			</div>
+			<div style="height:220px;border-bottom: 1px solid #d2d2d2;padding-top: 60px;">
+				<div class="input-widgets" >
+					<span class="title left clr22" >
+						<span>驳回原因：</span>
+					</span>
+					<div class="input-div">
+						<textarea data-bind="textInput:AttrRejectRemark" type="text" placeholder="请输入驳回原因" style="width: 240px; min-height: 90px;resize:none;border-color: #d2d2d2;"></textarea>
+					</div>
+				</div>
+			</div>
+			<div style="padding:0 10px;">
+				<button data-bind="click:EventCloseReject" style="background-color: #bebebe;color: #fff;float:right;width: 87px;height: 34px;margin-top: 7px;margin-left: 10px;cursor: pointer;border-radius: 2px;">取消</button>
+				<button data-bind="click:EventSureToReject" style="background-color: #3a8fde;color: #fff;float:right;width: 87px;height: 34px;margin-top: 7px;margin-left: 10px;cursor: pointer;border-radius: 2px;">确定</button>
+			</div>
+		</div>
+	</div>
+	<!-- 审核弹出层 -->
+	<div class="s-apply-selet" ui-showapprovetype="true" style="display:none-;" data-bind="attr:{id:CtrlIsShowApp2ID}">     
+		<div>
+			<span class="s-apply-agree" data-bind="click:EventNewApproveFunc">同意</span>
+			<span class="s-apply-refuse" data-bind="click:EventNewShowRefuteFunc">驳回</span>
+		</div>
+	</div>
+	<!-- 审核弹出层备份 -->
+	<div ui-approvetypebeitai="true"></div>
+	<!-- 内置数据启用禁用编辑删除控制弹出层 -->
+	<div class="s-gray-selet" ui-showinsetdata="true" style="display:none;" data-bind="attr:{id:CtrlIsShowInSetData}">
+		<div>
+			<span class="s-gray-diable" style="display:none;" data-bind="visible:AttrDataForDo().EnableStatus!=1,click:$root.EventEnableOrDisableInSetValue">启用</span>
+			<span class="s-gray-diable" style="display:none;" data-bind="visible:AttrDataForDo().EnableStatus==1,click:$root.EventEnableOrDisableInSetValue">禁用</span>
+			<span class="s-gray-del" style="display:none;" data-bind="visible:AttrDataForDo().EnableStatus==0,click:$root.EventDelInSetValue">删除</span>
+			<span class="s-gray-tlt" style="display:none" data-bind="if:AttrDocumentType()!='publicholiday',visible:AttrDocumentType()!='publicholiday',click:$root.EventEditInSetData">编辑</span>	
+		</div>
+	</div>
+	<!-- 内置数据启用禁用编辑删除控制弹出层备份 -->
+	<div ui-showinsetdatabeitai="true"></div>
+	
+	<!--节假日-->
+	<div data-bind="attr:{id:CtrlHolidayID}" ui-pop-bg="true" style="position: fixed;background-color: rgba(0,0,0,0.5);top: 0;bottom: 0;left: 0;right: 0;z-index: 99;display:none;">
+		<div ui-pop="true" style="background-color: #ffffff;border-radius: 5px;position: fixed;top: 50%;left: 50%;width:495px;height: 320px;margin-top: -160px;margin-left: -247px;">
+			<div style="height:48px;border-bottom: 1px solid #dcdcdc;line-height: 48px;padding: 0 15px;border-top-left-radius: 5px;border-top-right-radius: 5px;">
+				<a data-bind="click:EventCloseHoliday" style="width: 24px;height: 24px;float: right;cursor: pointer;margin-top: 12px;background: url({{.StaticServer}}/T1yun/cssAndjs/v2.3/images/popclose.png) 0 0px no-repeat;" title="关闭"></a>
+				<span style="font-size: 16px;">新增节假日</span>
+			</div>
+			<div style="height:220px;border-bottom: 1px solid #d2d2d2;padding-top: 30px;padding-left: 10px">
+				<div class="mt20">
+					<div class="input-widgets input-w219">
+						<span class="title">
+							<span>节假日名称：</span>
+						</span>
+						<div class="input-div">
+							<input type="text" data-bind="textInput:AttrHolidayName">
+						</div>
+					</div>
+					<div class="input-widgets input-w219">
+						<span class="title">
+							<span>开始时间：</span>
+						</span>
+						<div class="input-div">
+							<input type="text" data-bind="textInput:AttrStartDate" ui-date="true">
+						</div>
+					</div>
+					<div class="input-widgets input-w219">
+						<span class="title">
+							<span>结束时间：</span>
+						</span>
+						<div class="input-div">
+							<input type="text" data-bind="textInput:AttrEndDate" ui-date="true">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div style="padding:0 10px;">
+				<button  style="background-color: #bebebe;color: #fff;float:right;width: 87px;height: 34px;margin-top: 7px;margin-left: 10px;cursor: pointer;border-radius: 2px;" data-bind="click:EventCloseHoliday">取消</button>
+				<button  style="background-color: #3a8fde;color: #fff;float:right;width: 87px;height: 34px;margin-top: 7px;margin-left: 10px;cursor: pointer;border-radius: 2px;" data-bind="click:EventSaveHoliday">确定</button>
+			</div>
+		</div>
+	</div>
+<script type="text/javascript">
+	var ctrl=$('#{{.GUID}}');
+	function Module_Manage_Base(){
+		//内置数据弹出层控制
+		this.CtrlIsShowInSetData=tone.sys.guid();
+		this.AttrShowInsetDataIndex = ko.observable(0);
+		this.AttrDataForDo = ko.observable({EnableStatus:0,Name:'',ID:''});//取当前编辑的的属性值
+		//内置数据操作操作弹出控制
+		this.EventIsShowInSetData = function(m,e,index){
+			if(this.AttrDocumentType()=='publicholiday'){
+				this.AttrHolidayName(m.Name);
+				this.AttrStartDate(m.StartDate);
+				this.AttrEndDate(m.EndDate);
+			}
+			this.AttrDataForDo({EnableStatus:0,Name:'',ID:''});
+			this.AttrDataForDo({EnableStatus:m.EnableStatus,Name:m.Name,ID:m.ID});
+			//console.log(this.AttrShowInsetDataIndex(),index(),$('#'+this.CtrlIsShowInSetData).css("display")!="none")
+			if(this.AttrShowInsetDataIndex()==index()&&$('#'+this.CtrlIsShowInSetData).css("display")!="none"){
+				$('#'+this.CtrlIsShowInSetData).hide();
+				console.log("dadf")
+				return;
+			}
+			var s = $('#'+this.CtrlIsShowInSetData).show();
+			$(e.target).parent().find('[ui-insetname="true"]').append(s[0]);
+			this.AttrShowInsetDataIndex(index());
+			//console.log(m,"aaaaaaaaaaaaaaaaa")	
+		}.bind(this);
+		//编辑内置数据
+		this.EventEditInSetData = function(m,e){
+			$('[ui-showinsetdata="true"]').css("display","none")
+			//console.log(this.AttrDocumentType(),"this.AttrDocumentType()")
+			if(this.AttrDocumentType()=='publicholiday'){
+				$('#'+this.CtrlHolidayID).show();
+			}else{
+				$(e.target).parent().parent().parent().parent().find('[ui-spaninsetname="true"]').css("display","none");
+				$(e.target).parent().parent().parent().parent().find('[ui-inputinsetname="true"]').css("display","block");
+			}
+		}.bind(this);
+		
+		//更新内置数据
+		this.EventUpdateInSetData = function(m,e){
+			var params={};
+			params.Name=m.Name;
+			params.ID=m.ID;
+			
+			tone.ajaxJson('/common/update/'+m.DocumentType+'/'+m.ID,params,'post',function(data){
+				if(data.success!=undefined&&data.success==true){
+					m.UI_Name(m.Name);
+					$('[ui-spaninsetname="true"]').css("display","block");
+					$('[ui-inputinsetname="true"]').css("display","none");
+					tone.views.FuncAddTip('更新成功');
+				}else{
+					$('[ui-spaninsetname="true"]').css("display","block");
+					$('[ui-inputinsetname="true"]').css("display","none");
+					tone.views.FuncAddTip('更新失败');
+				}
+			}.bind(this));
+		}.bind(this);
+		//启用或禁用内置数据
+		this.EventEnableOrDisableInSetValue = function(m,e){
+			var params={};
+			if(this.AttrDataForDo().EnableStatus!=1){
+				params.EnableStatus = 1
+			}else{
+				params.EnableStatus = 2
+			}
+			tone.ajaxJson('/common/update/'+this.AttrDocumentType()+'/'+this.AttrDataForDo().ID,params,'post',function(data){
+				if(data.success!=undefined&&data.success==true){
+					if(this.AttrDocumentType()=='publicholiday'){
+						$.each(this.ListHoliday(),function(k,v){
+							if(v.ID==this.AttrDataForDo().ID){
+								v.EnableStatus = params.EnableStatus
+								v.UI_EnableStatus(params.EnableStatus)
+							}
+						}.bind(this));
+					}else{
+						$.each(this.ListValueData(),function(k,v){
+							if(v.ID==this.AttrDataForDo().ID){
+								v.EnableStatus = params.EnableStatus
+								v.UI_EnableStatus(params.EnableStatus)
+							}
+						}.bind(this));
+					}
+					$('[ui-showinsetdata="true"]').css("display","none");
+				}else{
+					tone.views.FuncAddTip('启用或禁用失败');
+				}
+			}.bind(this));
+		}.bind(this);
+		//删除内置数据
+		this.EventDelInSetValue = function(m,e){
+			var ss = $('#'+this.CtrlIsShowInSetData).hide();
+			$('[ui-showinsetdatabeitai="true"]').append(ss[0]);
+			tone.ajaxJson('/common/truedel/'+this.AttrDocumentType(),{'id':this.AttrDataForDo().ID},'get',function(data){
+				if(data.success!=undefined&&data.success==true){
+					if(this.AttrDocumentType()=='publicholiday'){
+						$.each(this.ListHoliday(),function(k,v){
+							if(v.ID==this.AttrDataForDo().ID){
+								this.ListHoliday.remove(v)
+							}
+						}.bind(this));
+					}else{
+						$.each(this.ListValueData(),function(k,v){
+							if(v.ID==this.AttrDataForDo().ID){
+								this.ListValueData.remove(v);
+							}
+						}.bind(this));
+					}
+				}else{
+					tone.views.FuncAddTip('删除失败'+data.error);
+				}
+			}.bind(this));
+		}.bind(this);
+				
+		
+		this.AttrView=ko.observable(0);
+		this.ListValueData = ko.observableArray([]);//内置数据数组
+		this.ListValueWaitForApprove = ko.observableArray([]);//待审核数据数组
+		this.ListValueHasPassApprove = ko.observableArray([]);//审核已通过的数据数组	
+		this.AttrViewTitle = ko.observable('');//标题头
+		this.AttrValue = ko.observable('');
+		this.AttrDocumentType = ko.observable('');
+		this.ListCompany = ko.observableArray([]);//所有公司名称数据数组
+		//付款方式相关
+		this.ListPayWay = ko.observableArray([]);
+		this.ListPayWayWaitForApprove = ko.observableArray([]);
+		this.ListPayWayHasPassApprove = ko.observableArray([]);
+		//订单状态相关
+		this.ListSellStatus = ko.observableArray([]);
+		this.ListSellStatusWaitForApprove = ko.observableArray([]);
+		this.ListSellStatusHasPassApprove = ko.observableArray([]);
+		//请假类型相关
+		this.ListAskforleaveType = ko.observableArray([]);
+		this.ListAskforleaveTypeWaitForApprove = ko.observableArray([]);
+		this.ListAskforleaveTypeHasPassApprove = ko.observableArray([]);
+		//加班类型相关
+		this.ListWorkovertimetype = ko.observableArray([]);
+		this.ListWorkovertimetypeWaitForApprove = ko.observableArray([]);
+		this.ListWorkovertimetypeHasPassApprove = ko.observableArray([]);
+		//出差类型相关
+		this.ListTripType = ko.observableArray([]);
+		this.ListTripTypeWaitForApprove = ko.observableArray([]);
+		this.ListTripTypeHasPassApprove = ko.observableArray([]);
+		//签卡类型相关
+		this.ListSignInType = ko.observableArray([]);
+		this.ListSignInTypeWaitForApprove = ko.observableArray([]);
+		this.ListSignInTypeHasPassApprove = ko.observableArray([]);
+		//节假日
+		this.ListHoliday=ko.observableArray([]);
+		this.CtrlHolidayID=tone.sys.guid();
+		this.AttrHolidayName=ko.observable('');
+		this.AttrStartDate=ko.observable('');
+		this.AttrEndDate=ko.observable('');
+		
+		this.CtrlIsShowApp2ID=tone.sys.guid();
+		this.AttrShowAppIndex = ko.observable(0)
+		this.AttDataWaitForApp = ko.observable({m1:'',e1:''});
+		this.AttrDataWaitForAppType = ko.observable('')
+		this.EventIsShowApp = function(m,e,index){
+			if(this.AttrShowAppIndex()==index()&&this.AttrDataWaitForAppType()==m.DocumentType&&$('#'+this.CtrlIsShowApp2ID).css("display")!="none"){
+				$('#'+this.CtrlIsShowApp2ID).hide();
+				return;
+			} 
+			var s = $('#'+this.CtrlIsShowApp2ID).show();
+			$(e.target).parent().find('[ui-approvetype="true"]').append(s[0]);
+			this.AttrShowAppIndex(index());
+			this.AttrDataWaitForAppType(m.DocumentType)
+			this.AttDataWaitForApp({m1:m,e1:e});
+		}.bind(this);
+
+		//驳回申请入口
+		this.EventNewShowRefuteFunc = function(m,e){
+			var m1 = this.AttDataWaitForApp().m1
+			var e1 = this.AttDataWaitForApp().e1
+			var s = $('#'+this.CtrlIsShowApp2ID).hide();
+			$('[ui-approvetypebeitai="true"]').append(s[0]);
+			this.EventShowReject(m1,e1);
+		}.bind(this)
+		
+		//新同意申请入口
+		this.EventNewApproveFunc = function(m,e){
+			var m1 = this.AttDataWaitForApp().m1
+			var e1 = this.AttDataWaitForApp().e1
+			var s = $('#'+this.CtrlIsShowApp2ID).hide();
+			$('[ui-approvetypebeitai="true"]').append(s[0]);
+			this.EventApprove(m1,e1);
+		}.bind(this);
+		
+		$('body').mousedown(function(e){
+			if($(e.target).jparent('[ui-approvetype="true"]').length<1&&!$(e.target).is('[ui-showapprovetypeorno="true"]')){
+				$('[ui-showapprovetype="true"]').css("display","none")
+			}			
+			if($(e.target).jparent('[ui-insetname="true"]').length<1&&!$(e.target).is('[ui-spaninsetname="true"]')){
+				$('[ui-showinsetdata="true"]').css("display","none")
+			}
+			if($(e.target).jparent('[ui-inputinsetname="true"]').length<1){
+				$('[ui-spaninsetname="true"]').css("display","block")
+				$('[ui-inputinsetname="true"]').css("display","none")
+			}
+		});
+		
+		//通过审核的数据的启用禁用
+		this.EvenEnableOrNo = function(m,e){
+			var params={}
+			if(m.EnableStatus!=1){
+				params.EnableStatus = 1
+			}else{
+				params.EnableStatus = 2
+			}
+			tone.ajaxJson('/common/update/'+m.DocumentType+'/'+m.ID,params,'post',function(data){
+				if(data.success!=undefined&&data.success==true){
+					if(m.EnableStatus!=1){
+						m.EnableStatus = 1
+						m.UI_EnableStatus(1)
+					}else{
+						m.EnableStatus = 2
+						m.UI_EnableStatus(2)
+					}
+				}else{
+					tone.views.FuncAddTip('启用或禁用失败');
+				}
+			}.bind(this));
+		}.bind(this);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		//获取数据
+		this.FuncGetList = function(documenttype){
+			var params = {'sort':'id'}
+			//var tmppp =[''/* ,tone.views.AttrUser().CompanyID */]
+			//params.filter=JSON.stringify([{'indexid__in':"'"+tmppp.join("','")+"'"}]);
+			params.filter=JSON.stringify([{'connector':'or','indexid__exact':'','ApproveStatus__in':'0,1'}]);
+			tone.ajaxJson('/common/querynoauth/'+documenttype+'/0/10000',params,'post',function(data){
+				if(data.success!=undefined&&data.success==true){
+					if(data.data==undefined){data.data=[];}
+					var tmp = []
+					var tmpwaitfor = [];
+					var tmphaspass = []; 
+					$.each(data.data,function(k,v){
+						v.DocumentType = documenttype;
+						v.CompanyName = ''
+						v.UI_EnableStatus = ko.observable(v.EnableStatus);
+						v.UI_Name = ko.observable(v.Name);
+						if(v.IndexID==''){
+							tmp.push(v);
+						}
+						if(v.IndexID!=''&&v.ApproveStatus==0){
+							$.each(this.ListCompany(),function(k1,v1){
+								if(v.IndexID==v1.ID){
+									v.CompanyName=v1.CompanyName;
+								}
+							}.bind(this));
+							tmpwaitfor.push(v);
+						}
+						if(v.IndexID!=''&&v.ApproveStatus==1){
+							$.each(this.ListCompany(),function(k1,v1){
+								if(v.IndexID==v1.ID){
+									v.CompanyName=v1.CompanyName;
+								}
+							}.bind(this));
+							tmphaspass.push(v);
+						}
+						
+					}.bind(this));
+					if(documenttype=='payway'){
+						this.ListPayWay(tmp);
+						this.ListPayWayWaitForApprove(tmpwaitfor);
+						this.ListPayWayHasPassApprove(tmphaspass);
+						this.ListValueWaitForApprove([])
+						this.ListValueWaitForApprove(this.ListPayWayWaitForApprove())
+						this.ListValueData([]);
+						this.ListValueData(this.ListPayWay());
+						this.ListValueHasPassApprove([]);
+						this.ListValueHasPassApprove(this.ListPayWayHasPassApprove());
+					}
+					if(documenttype=='sellstatus'){
+						this.ListSellStatus(tmp);
+						this.ListSellStatusWaitForApprove(tmpwaitfor);
+						this.ListSellStatusHasPassApprove(tmphaspass);
+					}
+					if(documenttype=='askforleavetype'){
+						this.ListAskforleaveType(tmp);
+						this.ListAskforleaveTypeWaitForApprove(tmpwaitfor);
+						this.ListAskforleaveTypeHasPassApprove(tmphaspass);
+					}
+					if(documenttype=='workovertimetype'){
+						this.ListWorkovertimetype(tmp);
+						this.ListWorkovertimetypeWaitForApprove(tmpwaitfor);
+						this.ListWorkovertimetypeHasPassApprove(tmphaspass);
+					}
+					if(documenttype=='triptype'){
+						this.ListTripType(tmp);
+						this.ListTripTypeWaitForApprove(tmpwaitfor);
+						this.ListTripTypeHasPassApprove(tmphaspass);
+					}
+					if(documenttype=='signintype'){
+						this.ListSignInType(tmp);
+						this.ListSignInTypeWaitForApprove(tmpwaitfor);
+						this.ListSignInTypeHasPassApprove(tmphaspass);
+					}
+				}else{
+					tone.views.FuncAddTip('获取数据失败'+data.error);
+				}
+			}.bind(this));
+		}.bind(this);
+		
+		//节假日
+		this.FuncGetHoliday=function(){
+			var params={'sort':'OffDate'};	
+			var url="/common/querynoauth/publicholiday/0/10000";
+			tone.ajaxJson(url,params,'post',function(data){
+				if(data.success!=undefined&&data.success==true){
+					if(data.data==undefined){data.data=[];}
+					$.each(data.data,function(k,v){
+						v.DocumentType = this.AttrDocumentType();
+						v.UI_EnableStatus = ko.observable(v.EnableStatus);
+						v.UI_Name = ko.observable(v.Name);
+						v.UI_OffDate = ko.observable(v.OffDate);
+					}.bind(this));
+					this.ListHoliday(data.data);
+				}else{
+					tone.views.FuncAddTip(data.error);
+				}
+			}.bind(this));	
+		}.bind(this);
+		//新增保存内置数据
+		this.EventSave = function(m,e){
+			var e = e||window.event;
+			if(e.keyCode!=13||this.AttrValue()==''){
+				return;
+			}
+			tone.ajaxJson('/common/create/'+this.AttrDocumentType()+'?admin=true',{'Name':this.AttrValue(),EnableStatus:0,/* ,'Status':1 */},'post',function(data){
+				if(data.success!=undefined&&data.success==true){
+					this.AttrValue('');
+					$.each(JSON.parse(data.data),function(k,v){
+						v.DocumentType = this.AttrDocumentType();
+						v.UI_EnableStatus = ko.observable(v.EnableStatus);
+						v.UI_Name = ko.observable(v.Name);
+						this.ListValueData.push(v);
+					}.bind(this));
+				}else{
+					tone.views.FuncAddTip('保存失败:'+data.error);
+				}
+			}.bind(this));	
+		}.bind(this);
+		
+		//删除内置数据
+		this.EventDel = function(m,e){
+			tone.ajaxJson('/common/truedel/'+this.AttrDocumentType(),{'id':m.ID},'get',function(data){
+				if(data.success!=undefined&&data.success==true){
+					this.ListValueData.remove(m);
+				}else{
+					tone.views.FuncAddTip('删除失败'+data.error);
+				}
+			}.bind(this));
+		}.bind(this);
+		
+		
+		
+		//同意申请
+		this.EventApprove = function(m,e){
+			tone.ajaxJson('/common/update/'+m.DocumentType+'/'+m.ID,{'ApproveStatus':1},'post',function(data){
+				if(data.success!=undefined&&data.success==true){
+					this.ListValueWaitForApprove.remove(m);
+					m.ApproveStatus=1;
+					this.ListValueHasPassApprove.push(m);
+					if(m.DocumentType=='payway'){
+						this.ListPayWayWaitForApprove.remove(m);
+						this.ListPayWayHasPassApprove.push(m);
+					}
+					if(m.DocumentType=='sellstatus'){
+						this.ListSellStatusWaitForApprove.remove(m);
+						this.ListSellStatusHasPassApprove.push(m);
+					}
+					if(m.DocumentType=='askforleavetype'){
+						this.ListAskforleaveTypeWaitForApprove.remove(m);
+						this.ListAskforleaveTypeHasPassApprove.push(m);
+					}
+					if(m.DocumentType=='workovertimetype'){
+						this.ListWorkovertimetypeWaitForApprove.remove(m);
+						this.ListWorkovertimetypeHasPassApprove.push(m);
+					}
+					if(m.DocumentType=='triptype'){
+						this.ListTripTypeWaitForApprove.remove(m);
+						this.ListTripTypeHasPassApprove.push(m);
+					}
+					if(m.DocumentType=='signintype'){
+						this.ListSignInTypeWaitForApprove.remove(m);
+						this.ListSignInTypeHasPassApprove.push(m);
+					}
+				}else{
+					tone.views.FuncAddTip(data.error);
+				}
+			}.bind(this));
+		}.bind(this);
+		
+		
+		//驳回申请
+		this.AttrDataToReject = ko.observable({});
+		this.AttrRejectRemark = ko.observable('');//驳回原因
+		this.CtrlRejectID = tone.sys.guid();
+		this.EventShowReject = function(m,e){
+			this.AttrDataToReject(m);
+			this.AttrRejectRemark('');
+			$('#'+this.CtrlRejectID).show();
+		}.bind(this);
+		this.EventCloseReject= function(m,e){
+			this.AttrDataToReject({});
+			$('#'+this.CtrlRejectID).hide();
+		}.bind(this);
+		
+		this.EventSureToReject = function(m,e){
+			if(this.AttrRejectRemark()==''){
+				tone.views.FuncAddTip('请输入驳回原因再点击确定');
+				return;
+			}
+			var m = this.AttrDataToReject();
+			tone.ajaxJson('/common/update/'+m.DocumentType+'/'+m.ID,{'ApproveStatus':2,'ApproveRemark':this.AttrRejectRemark()},'post',function(data){
+				if(data.success!=undefined&&data.success==true){
+					this.ListValueWaitForApprove.remove(m);
+					$('#'+this.CtrlRejectID).hide();
+					if(m.DocumentType=='payway'){
+						this.ListPayWayWaitForApprove.remove(m);
+					}
+					if(m.DocumentType=='sellstatus'){
+						this.ListSellStatusWaitForApprove.remove(m);
+					}
+					if(m.DocumentType=='askforleavetype'){
+						this.ListAskforleaveTypeWaitForApprove.remove(m);
+					}
+					if(m.DocumentType=='workovertimetype'){
+						this.ListWorkovertimetypeWaitForApprove.remove(m);
+					}
+					if(m.DocumentType=='triptype'){
+						this.ListTripTypeWaitForApprove.remove(m);
+					}
+					if(m.DocumentType=='signintype'){
+						this.ListSignInTypeWaitForApprove.remove(m);
+					}
+				}else{
+					tone.views.FuncAddTip(data.error);
+				}
+			}.bind(this));
+		}.bind(this);
+		
+		
+		//编辑更新已通过审核的数据
+		this.EventUpdateHasPassApprove = function(m,e){
+			tone.ajaxJson('/common/update/'+m.DocumentType+'/'+m.ID,{'Name':m.Name},'post',function(data){
+				if(data.success!=undefined&&data.success==true){
+					tone.views.FuncAddTip('更新成功');
+				}else{
+					tone.views.FuncAddTip('更新失败',data.error);
+				}
+			}.bind(this));
+		}.bind(this);
+		
+		//删除已通过审核的数据
+		this.EventDelHasPassApprove = function(m,e){
+			tone.ajaxJson('/common/truedel/'+this.AttrDocumentType(),{'id':m.ID},'get',function(data){
+				if(data.success!=undefined&&data.success==true){
+					this.ListValueHasPassApprove.remove(m);
+					if(m.DocumentType=='payway'){
+						this.ListPayWayHasPassApprove.remove(m);
+					}
+					if(m.DocumentType=='sellstatus'){
+						this.ListSellStatusHasPassApprove.remove(m);
+					}
+					if(m.DocumentType=='askforleavetype'){
+						this.ListAskforleaveTypeHasPassApprove.remove(m);
+					}
+					if(m.DocumentType=='workovertimetype'){
+						this.ListWorkovertimetypeHasPassApprove.remove(m);
+					}
+					if(m.DocumentType=='triptype'){
+						this.ListTripTypeHasPassApprove.remove(m);
+					}
+					if(m.DocumentType=='signintype'){
+						this.ListSignInTypeHasPassApprove.remove(m);
+					}
+				}else{
+					tone.views.FuncAddTip('删除失败'+data.error);
+				}
+			}.bind(this));
+		}.bind(this);
+		
+		
+		
+		//获取公司列表数据
+		/*@param params:参数
+		*/
+		this.FuncGetAllCompany=function(skip){
+			var params={sort:"-id",fields:"id,CompanyName"};
+			tone.ajaxJson('/common/querynoauth/organize/0/10000',params,'post',function(data){
+				if(data.success!=undefined&&data.success==true){
+					if(data.data==undefined){data.data=[];}
+					this.ListCompany(data.data);
+					this.FuncGetList('payway');
+					this.FuncGetList('sellstatus');
+					this.FuncGetList('askforleavetype');
+					this.FuncGetList('workovertimetype');
+					this.FuncGetList('triptype');
+					//this.FuncGetList('signintype');
+					this.FuncGetHoliday();
+				}else{
+					this.FuncGetList('payway');
+					this.FuncGetList('sellstatus');
+					this.FuncGetList('askforleavetype');
+					this.FuncGetList('workovertimetype');
+					this.FuncGetList('triptype');
+					//this.FuncGetList('signintype');
+					this.FuncGetHoliday();
+				}
+			}.bind(this));
+		}
+		
+		//节假日
+		this.EventAddHoliday=function(){
+			$('#'+this.CtrlHolidayID).show();
+			this.AttrHolidayName('');
+			this.AttrStartDate('');
+			this.AttrEndDate('');
+		}.bind(this);
+		this.EventCloseHoliday=function(){
+			$('#'+this.CtrlHolidayID).hide();
+		}.bind(this);
+		/*计算两个日期相差的天数 start - end*/
+		/*start - end*/
+		this.funcDateDif = function(start,last){
+			return (last.getTime()-start.getTime())/(1000*60*60*24);
+		};
+		this.EventSaveHoliday=function(){
+			var ss = $('#'+this.CtrlIsShowInSetData).hide();
+			$('[ui-showinsetdatabeitai="true"]').append(ss[0]);
+			if(this.AttrHolidayName()==""){
+				tone.views.FuncAddTip("假期名不为空")
+				return;
+			}
+			if(this.AttrStartDate()==""){
+				tone.views.FuncAddTip("开始时间不为空")
+				return;
+			}
+			if(this.AttrEndDate()==""){
+				tone.views.FuncAddTip("结束时间不为空")
+				return;
+			}
+			var index=this.funcDateDif(this.AttrStartDate().toDate(),this.AttrEndDate().toDate());
+			var list=[];
+			var ok=false;
+			for(var i=0;i<=index;i++ ){
+				var d=this.AttrStartDate().toDate();
+				var date= new Date(d -0+i* 86400000);
+				this.year = date.getFullYear();
+			   this.month = (date.getMonth() + 1) <10 ? "0" +( date.getMonth() + 1) : (date.getMonth() + 1);
+			   this.date = date.getDate()<10 ? "0" + date.getDate() : date.getDate();
+			   var currentTime =  + this.year + "-" + this.month + "-" + this.date ;
+				var temp={};
+				temp.Name=this.AttrHolidayName();
+				temp.OffDate=currentTime;
+				temp.EnableStatus = 0;
+				list.push(temp);
+				$.each(this.ListHoliday(),function(k,v){
+					if(currentTime==v.OffDate){
+						ok=true;
+						return false;
+					}
+				}.bind(this))
+			}	
+			if(ok==true){
+				tone.views.FuncAddTip("该时间段已有假期")
+				return;
+			}
+			var params=list;
+			tone.ajaxJson('/common/batchcreate/publicholiday',{data:JSON.stringify(params)},'post',function(data){
+				if(data.success!=undefined&&data.success==true){
+					this.FuncGetHoliday();
+					$('#'+this.CtrlHolidayID).hide();
+				}else{
+					tone.views.FuncAddTip('保存失败:'+data.error);
+				}
+			}.bind(this));	
+		}.bind(this);
+		
+		this.Views=function(){
+			this.FuncGetAllCompany();
+			$('[ui-main]').click(function(e){
+				var option=$(e.target).jparent('[ui-main]').attr('ui-main');
+				this.AttrView(option);
+				this.AttrValue('');
+				var s = $('#'+this.CtrlIsShowApp2ID).hide();
+				$('[ui-approvetypebeitai="true"]').append(s[0]);
+				var ss = $('#'+this.CtrlIsShowInSetData).hide();
+				$('[ui-showinsetdatabeitai="true"]').append(ss[0]);
+				switch(option){
+					case "0":
+						this.AttrViewTitle('付款方式');
+						this.AttrDocumentType('payway');
+						this.ListValueWaitForApprove([]);
+						this.ListValueWaitForApprove(this.ListPayWayWaitForApprove());
+						this.ListValueData([]);
+						this.ListValueData(this.ListPayWay());
+						this.ListValueHasPassApprove([]);
+						this.ListValueHasPassApprove(this.ListPayWayHasPassApprove());
+						break;
+					case "1":
+						this.AttrViewTitle('订单状态');
+						this.AttrDocumentType('sellstatus');
+						this.ListValueWaitForApprove([]);
+						this.ListValueWaitForApprove(this.ListSellStatusWaitForApprove());
+						this.ListValueData([]);
+						this.ListValueData(this.ListSellStatus());
+						this.ListValueHasPassApprove([]);
+						this.ListValueHasPassApprove(this.ListSellStatusHasPassApprove());
+					 	break;
+					case "2":
+						this.AttrViewTitle('请假类型');
+						this.AttrDocumentType('askforleavetype');
+						this.ListValueWaitForApprove([]);
+						this.ListValueWaitForApprove(this.ListAskforleaveTypeWaitForApprove());
+						this.ListValueData([]);
+						this.ListValueData(this.ListAskforleaveType());
+						this.ListValueHasPassApprove([]);
+						this.ListValueHasPassApprove(this.ListAskforleaveTypeHasPassApprove());
+					 	break;
+					case "3":
+						this.AttrViewTitle('加班类型');
+						this.AttrDocumentType('workovertimetype');
+						this.ListValueWaitForApprove([]);
+						this.ListValueWaitForApprove(this.ListWorkovertimetypeWaitForApprove());
+						this.ListValueData([]);
+						this.ListValueData(this.ListWorkovertimetype());
+						this.ListValueHasPassApprove([]);
+						this.ListValueHasPassApprove(this.ListWorkovertimetypeHasPassApprove());
+					 	break;
+					case "4":
+						this.AttrViewTitle('出差类型');
+						this.AttrDocumentType('triptype');
+						this.ListValueWaitForApprove([]);
+						this.ListValueWaitForApprove(this.ListTripTypeWaitForApprove());
+						this.ListValueData([]);
+						this.ListValueData(this.ListTripType());
+						this.ListValueHasPassApprove([]);
+						this.ListValueHasPassApprove(this.ListTripTypeHasPassApprove());
+					 	break;
+					/* case "5":
+						this.AttrViewTitle('签卡类型');
+						this.AttrDocumentType('signintype');
+						this.ListValueWaitForApprove([]);
+						this.ListValueWaitForApprove(this.ListSignInTypeWaitForApprove());
+						this.ListValueData([]);
+						this.ListValueData(this.ListSignInType());
+						this.ListValueHasPassApprove([]);
+						this.ListValueHasPassApprove(this.ListSignInTypeHasPassApprove());
+					 	break; */
+					case "6":
+						this.AttrViewTitle('节假日');
+						this.AttrDocumentType('publicholiday');
+					 	break;
+					default:
+						break;
+				}
+			}.bind(this));
+			$('[ui-main="0"]').click();	
+			//日期输入控件加载
+				$('[ui-date="true"]').datepicker({
+					'dateFormat': 'yy-mm-dd',
+					'changeMonth': true,
+					'changeYear': true
+				});
+		};
+		this.Bindings=function(ctrl){
+			ko.applyBindings(this,ctrl);
+			this.Views();
+		};
+	}
+	var module_Manage_Base = new Module_Manage_Base();
+	module_Manage_Base.Bindings(ctrl[0]);
+</script>
+</div>

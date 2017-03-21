@@ -1,0 +1,42 @@
+this.EventCheckedItem = function (m, e, parent, type, index) {
+				alert('dasa')
+				m.IsSel(m.IsSel()?false:true);
+				if (m.IsSel()) {
+					alert('xz')
+					this.Selemp({
+						m1:m,
+						e1:e,
+						parent1:parent,
+						type1:type
+					});
+					this.Selemps.push(this.Selemp());
+				} else {
+					alert('qx')
+					this.Selemp({
+						m1:m,
+						e1:e,
+						parent1:parent,
+						type1:type
+					});
+					console.log(this.Selemp());
+					this.Selemps.splice(this.Selemp(), 1);
+				}
+				/*console.log(this.Selemp().m);
+				console.log(this.Selemp().e);
+				$.each(this.Selemp, function (k, v) {
+					console.log(123)
+				})*/
+				this.AttrShowAppIndex(index());
+				// this.Selemp.push(this.AttDataWaitForApp());
+				//console.log(this.Selemp())
+				console.log(this.Selemps());
+
+			}.bind(this);
+      
+      this.Selemps = ko.observableArray([]);
+			this.Selemp = ko.observable({
+				m1: '',
+				e1: '',
+				parent1: '',
+				type1: ''
+			});
